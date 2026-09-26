@@ -1,0 +1,24 @@
+---
+- name: Configure Nginx reverse proxy and the 5 websites
+  hosts: nginx_servers
+  become: true
+  gather_facts: true
+  serial: 1            # one server at a time -> the other keeps serving traffic
+
+  roles:
+    - nginx
+    - websites
+
+  post_tasks:
+    - name: Health endpoint answers (used by the ALB)
+      ansible.builtin.uri:
+        url: http://127.0.0.1/health
+        status_code: 200
+
+    - name: Every website answers through the reverse proxy
+      ansible.builtin.uri:
+        url: "http://127.0.0.1/{{ item.slug }}/"
+        status_code: 200
+      loop: "{{ sites }}"
+      loop_control:
+        label: "/{{ item.slug }}/"
