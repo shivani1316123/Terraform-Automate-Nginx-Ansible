@@ -1,0 +1,88 @@
+---
+brand_name: "Northwind Portals"
+
+sites:
+  - slug: employee
+    nav_label: "Employee Portal"
+    title: "Employee Portal"
+    color: "#1d4ed8"
+    color_dark: "#1e3a8a"
+    icon: "🧑‍💼"
+    heading: "Everything your work day needs, in one place."
+    subtext: "Clock in, request leave, check payslips and find your team — all without opening five different tabs."
+    primary_cta: "See what you can do"
+    stats:
+      - value: "12,400+"
+        label: "Employees onboarded"
+      - value: "3 min"
+        label: "Average leave approval"
+      - value: "99.9%"
+        label: "Portal uptime"
+
+  - slug: customer
+    nav_label: "Customer Portal"
+    title: "Customer Portal"
+    color: "#15803d"
+    color_dark: "#14532d"
+    icon: "🛒"
+    heading: "Track orders, manage your account, get answers fast."
+    subtext: "From placing an order to tracking a delivery, manage your entire relationship with us from one dashboard."
+    primary_cta: "See what you can do"
+    stats:
+      - value: "1.2M+"
+        label: "Orders tracked"
+      - value: "4.8 / 5"
+        label: "Customer rating"
+      - value: "24 x 7"
+        label: "Account access"
+
+  - slug: insurance
+    nav_label: "Insurance Portal"
+    title: "Insurance Services"
+    color: "#6d28d9"
+    color_dark: "#4c1d95"
+    icon: "🛡️"
+    heading: "File a claim, check coverage, sleep easy."
+    subtext: "Manage your policies, upload documents, and follow every claim step by step without a single phone call."
+    primary_cta: "See what you can do"
+    stats:
+      - value: "48 hrs"
+        label: "Average claim turnaround"
+      - value: "50,000+"
+        label: "Active policies"
+      - value: "97%"
+        label: "Claims approved first pass"
+
+  - slug: reports
+    nav_label: "Reports Portal"
+    title: "Reports Dashboard"
+    color: "#c2410c"
+    color_dark: "#7c2d12"
+    icon: "📊"
+    heading: "The numbers that matter, without the spreadsheet hunt."
+    subtext: "Live dashboards across sales, operations and infrastructure health — built for people who make decisions."
+    primary_cta: "See what you can do"
+    stats:
+      - value: "35"
+        label: "Live dashboards"
+      - value: "15s"
+        label: "Data refresh interval"
+      - value: "6"
+        label: "Teams reporting daily"
+
+  - slug: support
+    nav_label: "Support Portal"
+    title: "Support Portal"
+    color: "#a3134d"
+    color_dark: "#701039"
+    icon: "🎧"
+    heading: "Get help, and always know where it stands."
+    subtext: "Raise a ticket, follow its progress and find answers before you even ask."
+    primary_cta: "See what you can do"
+    stats:
+      - value: "24 x 7"
+        label: "Support coverage"
+      - value: "15 min"
+        label: "Average first response"
+      - value: "96%"
+        label: "Customer satisfaction"

@@ -1,0 +1,138 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  color: #1e1b2e;
+  background: #ffffff;
+}
+
+h1, .brand {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+/* ---- Top navigation ---- */
+.topnav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 3rem;
+  border-bottom: 1px solid #ececec;
+  flex-wrap: wrap;
+}
+
+.brand {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #1e1b2e;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.75rem;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #4b4b57;
+  font-size: 0.95rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 2px solid transparent;
+}
+
+.nav-links a.active {
+  color: {{ item.color }};
+  border-bottom-color: {{ item.color }};
+  font-weight: 600;
+}
+
+/* ---- Hero ---- */
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  padding: 4rem 3rem;
+  background: linear-gradient(135deg, {{ item.color }}, {{ item.color_dark }});
+  color: #ffffff;
+}
+
+.hero-left {
+  flex: 1 1 480px;
+  max-width: 640px;
+}
+
+.hero-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero h1 {
+  font-size: 2.6rem;
+  line-height: 1.25;
+  margin: 0 0 1.2rem 0;
+}
+
+.subtext {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.88);
+  margin-bottom: 2rem;
+  max-width: 520px;
+}
+
+.cta-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.btn-solid {
+  background: #ffffff;
+  color: {{ item.color_dark }};
+}
+
+.btn-outline {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.hero-right {
+  flex: 0 1 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.1rem;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 0.2rem;
+}
+
+.stat-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+footer {
+  padding: 1.5rem 3rem;
+  font-size: 0.85rem;
+  color: #8b8b95;
+}
