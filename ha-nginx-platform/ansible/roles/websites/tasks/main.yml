@@ -1,0 +1,27 @@
+---
+- name: Create web root directories for each site
+  file:
+    path: "/var/www/{{ item.slug }}"
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: "0755"
+  loop: "{{ sites }}"
+
+- name: Deploy index.html for each site
+  template:
+    src: index.html.j2
+    dest: "/var/www/{{ item.slug }}/index.html"
+    owner: www-data
+    group: www-data
+    mode: "0644"
+  loop: "{{ sites }}"
+
+- name: Deploy style.css for each site
+  template:
+    src: style.css.j2
+    dest: "/var/www/{{ item.slug }}/style.css"
+    owner: www-data
+    group: www-data
+    mode: "0644"
+  loop: "{{ sites }}"

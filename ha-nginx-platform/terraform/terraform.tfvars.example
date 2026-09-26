@@ -1,0 +1,6 @@
+# Copy this file to terraform.tfvars and fill in your own values.
+# cp terraform.tfvars.example terraform.tfvars
+
+aws_region = "ap-south-1"
+key_name   = "ha-nginx-key"          # must already exist in your AWS account
+my_ip      = "49.36.XX.XX/32"        # get yours: curl https://checkip.amazonaws.com

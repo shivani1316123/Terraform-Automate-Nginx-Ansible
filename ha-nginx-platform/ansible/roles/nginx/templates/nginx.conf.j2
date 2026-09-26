@@ -1,0 +1,47 @@
+server {
+    listen 80 default_server;
+    server_name _;
+
+    # Used by the ALB target group health check
+    location /health {
+        access_log off;
+        return 200 "OK\n";
+        add_header Content-Type text/plain;
+    }
+
+    # Used locally by nginx-prometheus-exporter only (see nginx_exporter role)
+    location /nginx_status {
+        stub_status on;
+        allow 127.0.0.1;
+        deny all;
+    }
+
+    location = / {
+        return 302 /employee/;
+    }
+
+    location /employee/ {
+        alias /var/www/employee/;
+        index index.html;
+    }
+
+    location /customer/ {
+        alias /var/www/customer/;
+        index index.html;
+    }
+
+    location /insurance/ {
+        alias /var/www/insurance/;
+        index index.html;
+    }
+
+    location /reports/ {
+        alias /var/www/reports/;
+        index index.html;
+    }
+
+    location /support/ {
+        alias /var/www/support/;
+        index index.html;
+    }
+}
