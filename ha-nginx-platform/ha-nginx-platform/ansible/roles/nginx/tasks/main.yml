@@ -1,0 +1,62 @@
+---
+- name: Install Nginx and curl
+  ansible.builtin.apt:
+    name:
+      - nginx
+      - curl
+    state: present
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: Remove the default Nginx site
+  ansible.builtin.file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+  notify: Reload nginx
+
+- name: Install shared proxy header snippet
+  ansible.builtin.template:
+    src: proxy-params.conf.j2
+    dest: /etc/nginx/snippets/proxy-params.conf
+    mode: "0644"
+  notify: Reload nginx
+
+- name: Configure the 5 internal backend sites (127.0.0.1:800x)
+  ansible.builtin.template:
+    src: backends.conf.j2
+    dest: /etc/nginx/conf.d/backends.conf
+    mode: "0644"
+  notify: Reload nginx
+
+- name: Configure the public reverse proxy (port 80)
+  ansible.builtin.template:
+    src: reverse-proxy.conf.j2
+    dest: /etc/nginx/conf.d/reverse-proxy.conf
+    mode: "0644"
+  notify: Reload nginx
+
+- name: Create systemd override directory
+  ansible.builtin.file:
+    path: /etc/systemd/system/nginx.service.d
+    state: directory
+    mode: "0755"
+
+- name: Make systemd restart Nginx automatically if it crashes
+  ansible.builtin.copy:
+    dest: /etc/systemd/system/nginx.service.d/override.conf
+    mode: "0644"
+    content: |
+      [Service]
+      Restart=always
+      RestartSec=5
+  notify: Reload systemd
+
+- name: Validate Nginx configuration
+  ansible.builtin.command: nginx -t
+  changed_when: false
+
+- name: Enable and start Nginx
+  ansible.builtin.service:
+    name: nginx
+    state: started
+    enabled: true

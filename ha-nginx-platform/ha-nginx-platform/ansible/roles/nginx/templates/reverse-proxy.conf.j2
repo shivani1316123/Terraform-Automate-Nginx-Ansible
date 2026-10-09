@@ -1,0 +1,44 @@
+# {{ ansible_managed }}
+# Public entry point: the ALB sends every request to this server block on port 80.
+
+{% for site in sites %}
+upstream app_{{ site.slug }} {
+    server 127.0.0.1:{{ site.port }};
+    keepalive 16;
+}
+{% endfor %}
+
+server {
+    listen 80 default_server;
+    server_name _;
+    server_tokens off;
+
+    # Shows which EC2 server answered - handy for demonstrating load balancing
+    add_header X-Served-By "{{ inventory_hostname }}" always;
+
+    # ALB health check
+    location = /health {
+        access_log off;
+        default_type text/plain;
+        return 200 "OK\n";
+    }
+
+    # Landing page listing all portals
+    location / {
+        root {{ web_root }}/hub;
+        index index.html;
+        try_files $uri $uri/ =404;
+    }
+
+{% for site in sites %}
+    # /{{ site.slug }}/  ->  127.0.0.1:{{ site.port }}
+    location = /{{ site.slug }} {
+        return 301 /{{ site.slug }}/;
+    }
+    location /{{ site.slug }}/ {
+        include snippets/proxy-params.conf;
+        proxy_pass http://app_{{ site.slug }}/;
+    }
+
+{% endfor %}
+}
