@@ -1,7 +1,5 @@
 # High Availability Nginx Reverse Proxy Web Application using Terraform , Ansible & Cloudwatch for Monitoring & Alarm Alert
 
-# High Availability Nginx Reverse Proxy Web Application Using Terraform, Ansible & AWS CloudWatch
-
 ## 📌 Project Overview
 
 This project demonstrates the deployment of a **High Availability Nginx Reverse Proxy Web Application on AWS** using Terraform for infrastructure provisioning, Ansible for configuration management, and Amazon CloudWatch for monitoring and alarm notifications.
@@ -112,11 +110,8 @@ ansible-playbook -i inventory.ini site.yml
 
 The following screenshots demonstrate the deployed application and project output.
 
-### Application Load Balancer and Website Access
-
-![Project Output 1](https://github.com/user-attachments/assets/654c8c08-020b-44db-beea-723212a453e0)
-
 ### Nginx Reverse Proxy Application Output
+![Project Output 1](https://github.com/user-attachments/assets/654c8c08-020b-44db-beea-723212a453e0)
 
 ![Project Output 2](https://github.com/user-attachments/assets/06cdef04-4fdf-48bc-85ab-1223be3148c0)
 
